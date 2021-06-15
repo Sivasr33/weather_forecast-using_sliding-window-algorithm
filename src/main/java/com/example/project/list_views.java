@@ -222,8 +222,7 @@ public class list_views extends AppCompatActivity {
     class MyAdapter extends ArrayAdapter<String> {
 
         Context context;
-        String[] rDays, rtyp_of_day,rTemp,rHumdity;
-        int[] rImgs;
+        String[] rDays,rTemp,rHumdity;
 
         MyAdapter(Context c, String[] Days, String[] Temp, String[] Humdity) {
             super(c, R.layout.row_item, R.id.day, Days);
