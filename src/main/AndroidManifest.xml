@@ -19,7 +19,7 @@
        
        
         <activity android:name=".list_views" /> 
-        <activity android:name=".MainActivity3">
+        <activity android:name=".MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
