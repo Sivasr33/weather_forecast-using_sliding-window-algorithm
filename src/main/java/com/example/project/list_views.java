@@ -33,8 +33,7 @@ public class list_views extends AppCompatActivity {
     int i,j;
     int[][] C7days=new int[7][3], fc7days=new int[7][3];
     int[][] P14days=new int[14][3];
-    String []days=new String[7],typ_of_day=new String[7];
-    int[] imgs =new int[7];
+    String []days=new String[7];
     String []maxTemp=new String[7],minTemp=new String[7],Humdity=new String[7],Temp_tot=new String[7];
     int month=0,day=0;
 
@@ -45,13 +44,6 @@ public class list_views extends AppCompatActivity {
     //decimal format
     DecimalFormat df = new DecimalFormat("#.00");
 
-    // for csv file
-    InputStream inputstream;
-    String []data;
-    char c1;
-    boolean t=false;
-
-    // for previous year 14 days  1267360
     String city_id="";
     String key = "2827b08d7b7025e36711229c234397a8";
     String url1 = "",url2="";
@@ -94,16 +86,16 @@ public class list_views extends AppCompatActivity {
 
         city_id= MainActivity3.get_data.city_id;
 
-        passCityid(city_id);
-        countrySelected();
+        pastWeek(city_id);
+        pastYear();
 
         //myadapter
         listView=findViewById(R.id.listView);
-        MyAdapter adapter = new MyAdapter(getApplicationContext(),days,typ_of_day,imgs,Temp_tot,Humdity);
+        MyAdapter adapter = new MyAdapter(getApplicationContext(),days,Temp_tot,Humdity);
         listView.setAdapter(adapter);
     }
 
-    private void passCityid(String city_id) {
+    private void pastWeek(String city_id) {
 
         try {
             for(int i=7,j=0; i>0; i--) {
@@ -143,15 +135,15 @@ public class list_views extends AppCompatActivity {
         catch (Exception e) { e.printStackTrace(); }
     }
 
-    private void countrySelected() {
-        clr.add(Calendar.YEAR, -1); //2020
+    private void pastYear() {
+        clr.add(Calendar.YEAR, -1); // now here, 2021-1 = 2020
 
         for(int i=7,j=0;i>0;i--){
             clr.add(Calendar.DATE, -i); // before 7 days
             month=clr.get(Calendar.MONTH)+1;
             day = clr.get(Calendar.DAY_OF_MONTH);
-            //https://history.openweathermap.org/data/2.5/aggregated/day?id=1267360&month=5&day=16&appid=2827b08d7b7025e36711229c234397a8
-            //https://history.openweathermap.org/data/2.5/aggregated/day?q=Kayankulam,IN&month=5&day=16&appid=2827b08d7b7025e36711229c234397a8
+            //https://history.openweathermap.org/data/2.5/aggregated/day?id=1273874&month=5&day=16&appid=2827b08d7b7025e36711229c234397a8
+            //https://history.openweathermap.org/data/2.5/aggregated/day?q=Cochin,IN&month=5&day=16&appid=2827b08d7b7025e36711229c234397a8
 
             url2="https://history.openweathermap.org/data/2.5/aggregated/day?id="+city_id
                     +"&month="+month+"&day="+day+"&appid="+key;
@@ -220,37 +212,7 @@ public class list_views extends AppCompatActivity {
             else {  days[i]=date.format(clr.getTime()); }
             clr.add(Calendar.DATE,-i);
 
-            if(fc7days[i][0]>=30) {
-                if(fc7days[i][2]>=80) {  typ_of_day[i]="Shower"; imgs[i]=R.drawable.shower; minTemp[i]=""+(fc7days[i][0]-6);}
-                else if(fc7days[i][2]>=70) { typ_of_day[i]="Cloudy/Sunny"; imgs[i]=R.drawable.cloudy; minTemp[i]=""+(fc7days[i][0]-5); }
-                else {  typ_of_day[i]="Mostly Sunny"; imgs[i]=R.drawable.sunny; minTemp[i]=""+(fc7days[i][0]-4); }
-            }
-            else if(fc7days[i][0]>=26 && fc7days[i][0]<=29){
-                if (fc7days[i][2]>=86) {  typ_of_day[i]="Thunderstorm"; imgs[i]=R.drawable.thunderstorm; minTemp[i]=""+(fc7days[i][0]-5); }
-                else if (fc7days[i][2]>=81) {  typ_of_day[i]="Cloudy/shower"; imgs[i]=R.drawable.mostly_cloudy1; minTemp[i]=""+(fc7days[i][0]-5); }
-                else if(fc7days[i][2]>=74) {  typ_of_day[i]="Cloudy/Sunny"; imgs[i]=R.drawable.cloudy; minTemp[i]=""+(fc7days[i][0]-4); }
-                else  {  typ_of_day[i]="Mostly Sunny"; imgs[i]=R.drawable.sunny; minTemp[i]=""+(fc7days[i][0]-3); }
-            }
-            else if(fc7days[i][0]>=17){
-                if(fc7days[i][2]>=84) {  typ_of_day[i]="Rainy"; imgs[i]=R.drawable.rainy; minTemp[i]=""+(fc7days[i][0]-6); }
-                else if(fc7days[i][2]>=81) {  typ_of_day[i]="shower"; imgs[i]=R.drawable.shower; minTemp[i]=""+(fc7days[i][0]-5); }
-                else if(fc7days[i][2]>=72) {  typ_of_day[i]="Isolated Thunderstorms"; imgs[i]=R.drawable.isolated_tstorms; minTemp[i]=""+(fc7days[i][0]-4);}
-                else  {  typ_of_day[i]="Cloudy/Sunny"; imgs[i]=R.drawable.cloudy; minTemp[i]=""+(fc7days[i][0]-3); }
-            }
-            else if(fc7days[i][0]>=9){
-                if(fc7days[i][2]>=86) { typ_of_day[i]="Rainy and gentle breeze"; imgs[i]=R.drawable.rainy; minTemp[i]=""+(fc7days[i][0]-6);}
-                else if(fc7days[i][2]>=78) { typ_of_day[i]="Mostly cloudy"; imgs[i]=R.drawable.mostly_cloudy1; minTemp[i]=""+(fc7days[i][0]-5); }
-                else if(fc7days[i][2]>=70) { typ_of_day[i]="Isolated Thunderstorms"; imgs[i]=R.drawable.isolated_tstorms; minTemp[i]=""+(fc7days[i][0]-4);}
-                else { typ_of_day[i]="cloudy"; imgs[i]=R.drawable.mostly_cloudy; minTemp[i]=""+(fc7days[i][0]-4);}
-            }
-            else if(fc7days[i][0]>0){
-                if(fc7days[i][2]>=75) { typ_of_day[i]="Snow/shower"; imgs[i]=R.drawable.snow_shower; minTemp[i]=""+(fc7days[i][0]-4);}
-                else { typ_of_day[i]="Moderate rain"; imgs[i]=R.drawable.shower; minTemp[i]=""+(fc7days[i][0]-5); }
-            }
-            else if(fc7days[i][0]<=0){
-                typ_of_day[i]="Snow"; imgs[i]=R.drawable.snow; minTemp[i]=""+(fc7days[i][0]-3);
-            }
-
+            maxTemp[i]=""+(fc7days[i][0]);
             maxTemp[i]=""+(fc7days[i][0]);
             Temp_tot[i]=maxTemp[i]+"° / "+minTemp[i]+"°C";
             Humdity[i]=fc7days[i][2]+"%";
@@ -263,12 +225,10 @@ public class list_views extends AppCompatActivity {
         String[] rDays, rtyp_of_day,rTemp,rHumdity;
         int[] rImgs;
 
-        MyAdapter(Context c, String[] Days, String[] typ_of_day, int[] imgs, String[] Temp, String[] Humdity) {
+        MyAdapter(Context c, String[] Days, String[] Temp, String[] Humdity) {
             super(c, R.layout.row_item, R.id.day, Days);
             this.context = c;
             this.rDays = Days;
-            this.rtyp_of_day = typ_of_day;
-            this.rImgs = imgs;
             this.rTemp = Temp;
             this.rHumdity = Humdity;
         }
@@ -280,15 +240,11 @@ public class list_views extends AppCompatActivity {
             View row=layoutInflater.inflate(R.layout.row_item,parent,false);
 
             TextView days=row.findViewById(R.id.day);
-            TextView typ_of_day =row.findViewById(R.id.typ_day);
-            ImageView imgs= row.findViewById(R.id.weather);
             TextView Temp_tot = row.findViewById(R.id.max_min);
             TextView Humdity= row.findViewById(R.id.humidity);
 
             // resources on view
             days.setText(rDays[position]);
-            typ_of_day.setText(rtyp_of_day[position]);
-            imgs.setImageResource(rImgs[position]);
             Temp_tot.setText(rTemp[position]);
             Humdity.setText(rHumdity[position]);
 
