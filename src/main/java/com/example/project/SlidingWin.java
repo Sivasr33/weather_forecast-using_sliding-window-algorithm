@@ -113,9 +113,6 @@ public class SlidingWin {
                 { fc7days[i][j] = c7day[i][j]+meanHumidity;  }
             }
         }
-        Log.d("c7",""+ Arrays.deepToString(c7days));
-        Log.d("c7",""+ Arrays.deepToString(fc7days));
-
+       
     }
 }
-//[[30, 30, 65], [29, 29, 67], [30, 30, 67], [30, 30, 68], [30, 30, 68], [29, 29, 70], [30, 30, 72]]
