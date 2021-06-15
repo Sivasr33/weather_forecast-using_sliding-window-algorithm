@@ -14,39 +14,16 @@
         android:weightSum="3"
         tools:ignore="MissingConstraints">
 
-        <LinearLayout
-            android:layout_width="110dp"
+        <TextView
+            android:id="@+id/day"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginLeft="7dp"
-            android:layout_marginRight="7dp">
-
-            <TextView
-                android:id="@+id/day"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Day"
-                android:textColor="#000"
-                android:textSize="15sp" />
-
-            <TextView
-                android:id="@+id/typ_day"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Type Day"
-                android:textColor="#353232"
-                android:textSize="10sp"
-                android:textStyle="italic" />
+            android:text="Day"
+            android:textColor="#000"
+            android:textSize="15sp" />
 
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/weather"
-            android:layout_width="75dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="18dp"
-            android:src="@mipmap/ic_launcher_round" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -61,6 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="33 / 21"
                 android:textSize="14sp" />
+            
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,6 +60,5 @@
 
             </LinearLayout>
         </LinearLayout>
-    </LinearLayout>
 
 </LinearLayout>
