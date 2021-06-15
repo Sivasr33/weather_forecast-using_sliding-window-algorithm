@@ -5,7 +5,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 	
-	 <uses-feature android:name="android.hardware.screen.portrait" />
 
     <application
         android:allowBackup="true"
@@ -18,46 +17,10 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
        
-        <!-- <meta−data -->
-        <!-- android:name="com.google.android.geo.API_KEY" -->
-        <!-- android:value="AIzaSyBpWQq0LlVzYT8mKGUOy6KYv8CDh_WwzcY" /> -->
-		
-		<!-- <activity android:name=".weather_predict" /> -->
+       
         <activity android:name=".list_views" /> 
-        <activity android:name=".MainActivity3"/>
+        <activity android:name=".MainActivity3">
 
-        <activity android:name=".activities.precuation" />
-
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_corona" />
-
-        <activity android:name=".activities.WorldDataActivity" />
-        <activity android:name=".data.PerDistrictData" />
-        <activity android:name=".activities.DistrictwiseDataActivity" />
-        <activity
-            android:name=".data.PerCountryData"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".activities.CountrywiseDataActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".data.PerStateData"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".activities.StatewiseDataActivity"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".MainActivity1"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
-        </activity>
-
-             <activity android:name=".index">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
